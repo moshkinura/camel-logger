@@ -1,5 +1,7 @@
 ### camel-logger - NodeJS file logger
 [![npm version](https://badge.fury.io/js/camel-logger.svg)](https://badge.fury.io/js/camel-logger)
+![NPM](https://img.shields.io/npm/l/camel-logger?logo=npm)
+
 ### Install:
 ```bash
 npm i camel-logger

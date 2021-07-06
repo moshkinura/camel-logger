@@ -1,6 +1,6 @@
 {
   "name": "camel-logger",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "author": "Yury Moshkin <moshkin_ura@mail.ru> (https://bitbucket.org/belko42/)",
   "description": "",
   "main": "Logger.js",
