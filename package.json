@@ -1,14 +1,14 @@
 {
   "name": "camel-logger",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "Yury Moshkin <moshkin_ura@mail.ru> (https://bitbucket.org/belko42/)",
-  "description": "",
+  "description": "A package for saving program logs to a file",
   "main": "Logger.js",
   "scripts": {
     "test": "node test"
   },
   "license": "MIT",
-  "keywords": [],
+  "keywords": ["logger", "logfile", "log"],
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/belko42/camel-logger.git"
