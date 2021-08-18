@@ -2,7 +2,7 @@
 [![npm version](https://badge.fury.io/js/camel-logger.svg)](https://badge.fury.io/js/camel-logger)
 ![NPM](https://img.shields.io/npm/l/camel-logger?logo=npm)
 
-### New Version 1.0.4
+### New Version 1.1.1
 ```javascript
 logger.group('group alias')
   logger.delimiter() // alias line
