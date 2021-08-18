@@ -2,7 +2,8 @@ const { Logger } = require('./Logger')
 const logger = new Logger('log/log_file.txt')
 
 const json = {"strict": {"column": {"age": 24,"name": "Yury", "job": "Developer"}}}// logger.dev
-
+logger.group("group Text")
+// ----- [group]: group Text -----
 logger.line()
 // [2021-07-02T21:26:23.069Z][L]: -------------------------
 logger.empty()
@@ -25,3 +26,4 @@ logger.dev(json, true) // true - on mode JSON.STRINGIFY / No record log file
 //     }
 // }
 // }
+logger.groupend() // Group End

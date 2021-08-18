@@ -2,6 +2,14 @@
 [![npm version](https://badge.fury.io/js/camel-logger.svg)](https://badge.fury.io/js/camel-logger)
 ![NPM](https://img.shields.io/npm/l/camel-logger?logo=npm)
 
+### New Version 1.0.3
+```javascript
+logger.group("group Text")
+// ----- [group]: group Text -----
+
+logger.groupend() // Group End
+```
+
 ### Install:
 ```bash
 npm i camel-logger

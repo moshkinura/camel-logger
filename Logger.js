@@ -23,6 +23,12 @@ exports.Logger = class Logger {
     return message
   }
 
+  bodyGroup(text, type='group') {
+    let message = `----- [${type}]: ${text} -----`
+
+    return message
+  }
+
   writeConsole(text, type='log') {
     console[type](text)
   }
@@ -51,6 +57,17 @@ exports.Logger = class Logger {
     if(this.allLog.length >= this.maxMemLog){
       this.allLog.splice(0, (this.allLog.length-1) - this.maxMemLog)
     }
+  }
+
+  async group(text) {
+    let message = this.bodyGroup(text, 'group')
+    this.writeConsole(message, 'group')
+
+    await this.writeFile(message)
+  }
+
+  async groupend() {
+    this.writeConsole('', 'groupEnd')
   }
 
   async line() {
