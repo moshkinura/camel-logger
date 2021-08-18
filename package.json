@@ -1,6 +1,6 @@
 {
   "name": "camel-logger",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Yury Moshkin <moshkin_ura@mail.ru> (https://bitbucket.org/belko42/)",
   "description": "A package for saving program logs to a file",
   "main": "Logger.js",

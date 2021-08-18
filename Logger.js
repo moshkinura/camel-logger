@@ -12,28 +12,28 @@ exports.Logger = class Logger {
     return this.allLog
   }
 
-  get date() {
+  get _date() {
     return new Date().toISOString()
   }
 
-  bodyMessage(text, type='L') {
-    let body = `[${this.date}][${type}]`
+  _bodyMessage(text, type='L') {
+    let body = `[${this._date}][${type}]`
     let message = `${body}: ${text}`
 
     return message
   }
 
-  bodyGroup(text, type='group') {
+  _bodyGroup(text, type='group') {
     let message = `----- [${type}]: ${text} -----`
 
     return message
   }
 
-  writeConsole(text, type='log') {
-    console[type](text)
+  _writeConsole(text, type='log') {
+    type ? console[type](text) : console.log(text)
   }
 
-  async writeFile(message){
+  async _writeFile(message){
     try {
       this._pushAllLog(message)
 
@@ -59,53 +59,125 @@ exports.Logger = class Logger {
     }
   }
 
-  async group(text) {
-    let message = this.bodyGroup(text, 'group')
-    this.writeConsole(message, 'group')
+  async group(text) { // Group Log
+    let message = this._bodyGroup(text, 'group')
+    this._writeConsole(message, 'group')
 
-    await this.writeFile(message)
+    await this._writeFile(message)
   }
 
-  async groupend() {
-    this.writeConsole('', 'groupEnd')
+  async groupEnd(text) { //Group End Log
+    let message = this._bodyGroup(text, 'groupEnd')
+    this._writeConsole(message, null)
+    this._writeConsole('', 'groupEnd')
+
+    await this._writeFile(message)
+  }
+
+  async groupend(text) { // alias groupEnd
+    await this.groupEnd(text)
   }
 
   async line() {
     let text = '-------------------------'    // line message
-    let message = this.bodyMessage(text, 'L') // formating message
-    this.writeConsole(message)                // display console.log
-    await this.writeFile(message)             // write file log
+    let message = this._bodyMessage(text, 'L') // formating message
+    this._writeConsole(message)                // display console.log
+    await this._writeFile(message)             // write file log
+  }
+
+  async delimiter() { // alias line
+    await this.line()
+  }
+
+  async separator() { // alias line
+    await this.line()
   }
 
   async empty() {
     let message = ''                          // formating message
-    this.writeConsole(message)                // display console.log
-    await this.writeFile(message)             // write file log
+    this._writeConsole(message)                // display console.log
+    await this._writeFile(message)             // write file log
+  }
+
+  async blank() { // alias empty
+    await this.empty()
+  }
+
+  async null() { // alias empty
+    await this.empty()
+  }
+
+  async space() { // alias empty
+    await this.empty()
   }
 
   async log(text) {
-    let message = this.bodyMessage(text, 'L') // formating message
-    this.writeConsole(message)                // display console.log
-    await this.writeFile(message)             // write file log
+    let message = this._bodyMessage(text, 'L') // formating message
+    this._writeConsole(message)                // display console.log
+    await this._writeFile(message)             // write file log
+  }
+
+  async logging(text) { // alias log
+    await this.log(text)
+  }
+
+  async text(text) { // alias log
+    await this.log(text)
+  }
+
+  async l(text) { // alias log
+    await this.log(text)
   }
 
   async info(text) {
-    let message = this.bodyMessage(text, 'I') // formating message
-    this.writeConsole(message)                // display console.log
-    await this.writeFile(message)             // write file log
+    let message = this._bodyMessage(text, 'I') // formating message
+    this._writeConsole(message)                // display console.log
+    await this._writeFile(message)             // write file log
+  }
+
+  async information(text) { // alias info
+    await this.info(text)
+  }
+
+  async i(text) { // alias info
+    await this.info(text)
   }
 
   async error(text) {
-    let message = this.bodyMessage(text, 'E') // formating message
-    this.writeConsole(message)                // display console.log
-    await this.writeFile(message)             // write file log
+    let message = this._bodyMessage(text, 'E') // formating message
+    this._writeConsole(message)                // display console.log
+    await this._writeFile(message)             // write file log
+  }
+
+  async err(text) { // alias error
+    await this.error(text)
+  }
+
+  async e(text) { // alias error
+    await this.error(text)
   }
 
   async dev(text, json=false) {
-    if(json){
-      text = JSON.stringify(text, null, '\t')
-    }
-    let message = this.bodyMessage(text, 'D') // formating message
-    this.writeConsole(message)                // display console.log
+    text = json ? JSON.stringify(text, null, '\t') : text
+    let message = this._bodyMessage(text, 'D') // formating message
+    this._writeConsole(message)                // display console.log
+  }
+
+  async developer(text, json=false) { // alias dev
+    await this.dev(text, json)
+  }
+
+  async d(text, json=false) { // alias dev
+    await this.dev(text, json)
+  }
+
+  async json(text) {
+    text = text ? JSON.stringify(text, null, '\t') : ''
+    let message = this._bodyMessage(text, 'JSON') // formating message
+    this._writeConsole(message)                   // display console.log
+  }
+
+  async stringify(text) { // alias json
+    await this.json(text)
   }
 }
